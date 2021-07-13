@@ -36,3 +36,6 @@ currency-exchange-service/mvnw
 *.java
 api-gateway/mvnw
 *.jar
+currency-conversion-service-feign/mvnw
+*.jar
+*.jar
