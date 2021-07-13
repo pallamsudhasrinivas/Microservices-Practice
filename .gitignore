@@ -37,3 +37,12 @@ api-gateway/mvnw
 currency-conversion-service-feign/mvnw
 *.jar
 *.jar
+*.jar
+api-gateway/.mvn/wrapper/maven-wrapper.properties
+api-gateway/.mvn/wrapper/MavenWrapperDownloader.java
+*.jar
+currency-conversion-service-feign/.mvn/wrapper/maven-wrapper.properties
+currency-exchange-service/.mvn/wrapper/MavenWrapperDownloader.java
+currency-exchange-service/.mvn/wrapper/maven-wrapper.properties
+currency-exchange-service/.mvn/wrapper/maven-wrapper.jar
+currency-conversion-service-feign/.mvn/wrapper/MavenWrapperDownloader.java
