@@ -4,17 +4,23 @@ import java.util.Date;
 
 public class User {
 
-    private String id;
+    private Integer id;
 
     private String name;
 
     private Date dob;
 
-    public String getId() {
+    public User(Integer id, String name, Date dob) {
+        this.id = id;
+        this.name = name;
+        this.dob = dob;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
