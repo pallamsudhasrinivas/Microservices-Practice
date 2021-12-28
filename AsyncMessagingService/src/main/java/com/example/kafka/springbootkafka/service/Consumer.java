@@ -10,8 +10,8 @@ import javax.mail.internet.*;
 @Service
 public class Consumer {
 
-    private static String USER_NAME = "pallam.sudhasrinivas@gmail.com";  // GMail user name (just the part before "@gmail.com")
-    private static String PASSWORD = "aqtkofsqgdfgifyb"; // GMail password
+    private static String USER_NAME = "xxxx.xxxx@gmail.com";  // GMail user name (just the part before "@gmail.com")
+    private static String PASSWORD = "xxxxxxxxx"; // GMail password
 
     @KafkaListener(topics = "mytopic",groupId = "group_id")
     public void consumeMessage(String message){
