@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: userservice
+  labels:
+    app: userservice
+    service: userservice
+spec:
+  ports:
+  - port: 9081
+    name: http
+  selector:
+    app: userservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userservice-v1
+  labels:
+    app: userservice
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: userservice
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: userservice
+        version: v1
+    spec:
+      containers:
+      - name: userservice
+        image: sri2583/userservice:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9081
+---
+###########################################################################
+# Ingress resource (gateway)
+##########################################################################
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gateway
+  annotations:
+    kubernetes.io/ingress.class: "istio"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /.*
+            backend:
+              serviceName: userservice
+              servicePort: 9080

@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jwtauthservice
+  labels:
+    app: jwtauthservice
+    service: jwtauthservice
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: jwtauthservice
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jwtauthservice-v1
+  labels:
+    app: jwtauthservice
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jwtauthservice
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: jwtauthservice
+        version: v1
+    spec:
+      containers:
+      - name: jwtauthservice
+        image: sri2583/jwtauthservice:1.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9080
+---
+###########################################################################
+# Ingress resource (gateway)
+##########################################################################
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gateway
+  annotations:
+    kubernetes.io/ingress.class: "istio"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /auth/.*
+            backend:
+              serviceName: jwtauthservice
+              servicePort: 9080
